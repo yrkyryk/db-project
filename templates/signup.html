@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="static/style.css">  <!-- CSS 파일 연결 -->
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            <a href="/login" class="btn">로그인</a>
+            <a href="/signup" class="btn">회원가입</a>
+        </div>
+    </header>
+
+    <main>
+        <h2>회원가입</h2>
+        <div class="form-container">
+            <form action="/signup" method="POST">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" required>
+        
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" required>
+        
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required>
+        
+                <label for="phone">전화번호</label>
+                <input type="text" id="phone" name="phone">
+        
+                <button type="submit">회원가입</button>
+            </form>
+
+        </div>
+    
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+    <p>이미 회원이신가요? <a href="/login">로그인</a></p>
+
+    </main>
+    
+</body>
+</html>

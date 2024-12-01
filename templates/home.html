@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>db 렌터카</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- CSS 파일 연결 -->
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            {% if user_logged_in %}
+                <span>{{ name }}님, 반갑습니다!</span>
+                <a href="/logout" class="btn">로그아웃</a>
+            {% else %}
+                <a href="/login" class="btn">로그인</a>
+                <a href="/signup" class="btn">회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- 메뉴 버튼 -->
+    <nav class="menu">
+        <a href="/reservation" class="btn">렌트카 예약</a>
+        <a href="/car" class="btn">보유차종</a>
+        <a href="/guide" class="btn">이용안내</a>
+        <a href="/support" class="btn">고객센터</a>
+    </nav>
+    <h1>환영합니다!</h1>
+    <h2>제주도 렌트카 db 렌트카</h2>
+
+    <!-- 자동차 이미지 추가 -->
+    <div class="home-image-container">
+        <img src="https://cdn.pixabay.com/photo/2023/10/15/02/20/car-8316057_640.png" alt="렌트카" class="home-image">
+        <img src="https://media.istockphoto.com/id/1401698210/ko/%EB%B2%A1%ED%84%B0/%EC%A0%9C%EC%A3%BC%EB%8F%84%EC%9D%98-%EB%8F%8C%ED%95%98%EB%A3%A8%EB%B0%A9-%EA%B4%80%EA%B4%91%EA%B0%9D%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%A0%84%ED%86%B5%EC%9D%98-%EB%9E%9C%EB%93%9C%EB%A7%88%ED%81%AC-%ED%95%9C%EA%B5%AD%EC%9D%98-%EB%8F%8C%ED%95%98%EB%A3%A8%EB%B0%A9-%EB%8F%99%EC%83%81.jpg?s=612x612&w=0&k=20&c=NHmpI6T_CYEykUZJE1yArC3ddhH6Xks2DseTeGpc_rM=" alt="렌트카" class="home-image">
+        
+    </div>
+
+    
+
+</body>
+</html>

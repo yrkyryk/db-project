@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용후기</title>
+    <link rel="stylesheet" href="styles.css"> <!-- CSS 파일 연결 -->
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            <a href="/login" class="btn">로그인</a>
+            <a href="/signup" class="btn">회원가입</a>
+            <a href="/guest" class="btn">비회원</a>
+        </div>
+    </header>
+
+    <!-- 메뉴 버튼 -->
+    <nav class="menu">
+        <a href="/reservation" class="btn">렌트카 예약</a>
+        <a href="/car" class="btn">보유차종</a>
+        <a href="/guide" class="btn">이용안내</a>
+        <a href="/support" class="btn">고객센터</a>
+    </nav>
+
+    <h1>고객센터</h1>
+    <h3>이용후기</h3>
+
+
+    <!-- 고객센터 서브 메뉴 -->
+    <div class="support-menu">
+        <ul>
+            <li><a href="/review">이용 후기</a></li>
+            <li><a href="/qna">문의사항</a></li>
+            <li><a href="/instant_inquiry">즉시문의</a></li>
+        </ul>
+    </div>
+
+    <!-- 이용 후기 작성 폼 -->
+    <div class="feedback-form">
+        <h2>후기 작성</h2>
+        <form action="/submit_feedback" method="POST">
+            <label for="customer_name">이름:</label>
+            <input type="text" id="customer_name" name="customer_name" required placeholder="이름을 입력하세요">
+
+            <label for="feedback">이용 후기:</label>
+            <textarea id="feedback" name="feedback" required placeholder="이용 후기를 작성하세요"></textarea>
+
+            <button type="submit">후기 제출</button>
+        </form>
+    </div>
+
+    <!-- 후기 게시판 -->
+    <h3>이용 후기 게시판</h3>
+    <div class="feedback-list">
+        {% for review in feedbacks %}
+            <div class="feedback-item">
+                <h4>{{ review.name }} 님</h4>
+                <p>{{ review.feedback }}</p>
+                <small>{{ review.created_at }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

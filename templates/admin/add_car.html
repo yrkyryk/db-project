@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차량 관리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> <!-- 스타일시트 연결 -->
+
+</head>
+<body>
+
+    <h2>차량 관리</h2>
+
+    <!-- 차량 등록 폼 -->
+    <h3>자동차 등록</h3>
+    <form action="/admin/add_car" method="POST">
+        <label for="car_name">차량 이름:</label>
+        <input type="text" id="car_name" name="car_name" required><br><br>
+
+        <label for="model_year">모델 연식:</label>
+        <input type="text" id="model_year" name="model_year" required><br><br>
+
+        <label for="color">차량 색상:</label>
+        <input type="text" id="color" name="color"><br><br>
+
+        <button type="submit" class="btn">등록</button>
+    </form>
+
+    <br>
+
+
+
+    <!-- 차량 검색 및 목록 -->
+    <h3>차량 목록</h3>
+    <form action="/admin/add_car" method="GET">
+        <label for="search">차량 이름 또는 ID 검색:</label>
+        <input type="text" id="search" name="search" placeholder="차량 이름 또는 ID">
+        <button type="submit" class="btn">검색</button>
+    </form>
+
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>차량 ID</th>
+                <th>차량 이름</th>
+                <th>차량 종류</th>
+                <th>모델연식</th>
+                <th>색상</th>
+                <th>연료 종류</th>
+                <th>유지보수 상태</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car_table in carsdata %}
+                <tr>
+                    <td>{{ car_table.car_id }}</td>
+                    <td>{{ car_table.car_name }}</td>
+                    <td>{{ car_table.car_type }}</td>
+                    <td>{{ car_table.model_year }}</td>
+                    <td>{{ car_table.color }}</td>
+                    <td>{{ car_table.fuel_type }}</td>
+                    <td>
+                        {% if car_table.maintenance_status in ['진행중', '대기'] %}
+                            유지보수
+                        {% else %}
+                            없음
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/admin/delete_car/{{ car_table.car_id }}" method="POST">
+                            <button type="submit" class="btn">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/admin/car" class="btn">차량 관리</a>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+
+</body>
+</html>
+

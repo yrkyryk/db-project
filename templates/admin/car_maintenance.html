@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유지보수 관리</title>
+    <link rel="stylesheet" href="static/dashboard.css"> <!-- 스타일시트 연결 -->
+</head>
+<body>
+
+    <h2>유지보수 관리</h2>
+
+    <h3>> 유지보수 목록 조회</h3>
+    <!-- 검색 폼 -->
+    <form method="GET">
+        <label for="car_id">자동차 ID:</label>
+        <input type="number" id="car_id" name="car_id" value="{{ request.args.get('car_id', '') }}">
+
+        <label for="maintenance_type">유지보수 유형:</label>
+        <input type="text" id="maintenance_type" name="maintenance_type" value="{{ request.args.get('maintenance_type', '') }}">
+
+        <label for="status">유지보수 상태:</label>
+        <select id="status" name="status">
+            <option value="">전체</option>
+            <option value="진행중" {% if request.args.get('status') == '진행중' %}selected{% endif %}>진행중</option>
+            <option value="완료" {% if request.args.get('status') == '완료' %}selected{% endif %}>완료</option>
+            <option value="대기" {% if request.args.get('status') == '대기' %}selected{% endif %}>대기</option>
+        </select>
+
+        <button type="submit">검색</button>
+    </form><br><br>
+
+    <h3>> 새로운 유지보수 등록</h3>
+    <!-- 입력 폼 -->
+    <form method="POST">
+        <label for="car_id">자동차 ID:</label>
+        <input type="number" id="car_id" name="car_id" required>
+        
+        <label for="maintenance_type">유지보수 유형:</label>
+        <input type="text" id="maintenance_type" name="maintenance_type" required>
+
+        <label for="status">유지보수 상태:</label>
+        <select id="status" name="status" required>
+            <option value="진행중">진행중</option>
+            <option value="완료">완료</option>
+            <option value="대기">대기</option>
+        </select>
+
+        <button type="submit">유지보수 추가</button>
+    </form>
+    
+
+    <br><br>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+
+    <!-- 유지보수 테이블 -->
+    <h3>유지보수 목록</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>자동차 ID</th>
+                <th>유지보수 유형</th>
+                <th>유지보수 비용</th>
+                <th>유지보수 날짜</th>
+                <th>유지보수 상태</th>
+                <th>담당 직원</th>
+                <th>세부사항</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maintenance in maintenance_data %}
+                <tr>
+                    <td>{{ maintenance.car_id }}</td>
+                    <td>
+                        <form method="POST" action="/admin/update_maintenance">
+                            <input type="hidden" name="maintenance_id" value="{{ maintenance.maintenance_id }}">
+                            <input type="text" name="maintenance_type" value="{{ maintenance.maintenance_type }}" required>
+                    </td>
+                    <td><input type="number" name="cost" value="{{ maintenance.cost }}" step="0.01"></td>
+                    <td><input type="date" name="maintenance_date" value="{{ maintenance.maintenance_date }}"></td>
+                    <td>
+                        <select name="status" required>
+                            <option value="진행중" {% if maintenance.status == '진행중' %}selected{% endif %}>진행중</option>
+                            <option value="완료" {% if maintenance.status == '완료' %}selected{% endif %}>완료</option>
+                            <option value="대기" {% if maintenance.status == '대기' %}selected{% endif %}>대기</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="employee_name" value="{{ maintenance.employee_name }}"></td>
+                    <td><input type="text" name="details" value="{{ maintenance.details }}"></td>
+                    <td>
+                        <button type="submit">수정</button>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- 삭제 버튼 -->
+                        <form action="/admin/delete_maintenance/{{ maintenance.maintenance_id }}" method="GET" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <button type="submit">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+
+    <a href="/admin/car" class="btn">차량 관리</a>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+
+</body>
+</html>
+

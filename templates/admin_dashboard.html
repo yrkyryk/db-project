@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드</title>
+    <link rel="stylesheet" href="static/dashboard.css">
+</head>
+<body>
+
+    <h2>관리자 대시보드</h2>
+    
+    <p>안녕하세요, {{ session.get('name') }}님!</p>
+
+    <h3>예약 관리</h3>
+    <p>예약 현황을 확인하고 관리할 수 있습니다.</p>
+    <a href="/admin/reservation" class="btn">예약 관리</a>
+
+    <h3>차량 관리</h3>
+    <p>차량 정보를 추가, 조회 또는 삭제할 수 있습니다.</p>
+    <a href="/admin/car" class="btn">차량 관리</a>
+
+    <br><br>
+    <a href="/logout" class="btn">로그아웃</a>
+
+</body>
+</html>
+

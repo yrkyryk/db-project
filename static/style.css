@@ -1,0 +1,474 @@
+/* static/styles.css */
+
+/* 전체적인 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* 헤더 스타일 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+}
+
+header .logo a {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    border-radius: 5px;
+}
+
+header .user-actions a {
+    color: white;
+    font-size: 16px;
+    margin: 0 10px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    background-color: #3498db;
+}
+
+header .user-actions a:hover {
+    background-color: #2980b9;
+}
+
+/* 메뉴 버튼 스타일 */
+nav.menu {
+    background-color: #34495e;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav.menu a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #7f8c8d;
+}
+
+nav.menu a:hover {
+    background-color: #95a5a6;
+}
+
+/* 페이지 제목 */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 36px;
+    margin-top: 40px;
+}
+
+h2 {
+    text-align: center;
+    color: #e74c3c;
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+/* 링크 스타일 */
+p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+p a {
+    color: #3498db;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+/*home 사진*/
+.home-image-container {
+    display: flex;
+    justify-content: center;  /* 가로로 가운데 정렬 */
+    align-items: center;      /* 세로로 가운데 정렬 */
+    height: 100vh;            /* 부모 요소 높이를 화면의 전체 높이에 맞춤 */
+    gap: 20px;                /* 이미지 간의 간격을 설정 (선택사항) */
+}
+
+.home-image {
+    max-width: 100%;  /* 이미지를 부모 컨테이너에 맞게 크기 조정 */
+    height: auto;     /* 높이는 자동으로 비율에 맞게 조정 */
+}
+
+/*******************************************************/
+/* 공통 폼 스타일 */ /* 로그인, 회원가입 */
+.form-container {
+    width: 100%;
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 50px auto; /* 화면 중앙에 배치 */
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #ccc; /* 네모박스 테두리 */
+    border-radius: 8px; /* 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    box-sizing: border-box; /* padding을 포함한 너비 계산 */
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.form-container form {
+    width: 100%;
+}
+
+.form-container form label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.form-container form input[type="text"],
+.form-container form input[type="email"],
+.form-container form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form-container form input[type="text"]:focus,
+.form-container form input[type="email"]:focus,
+.form-container form input[type="password"]:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.form-container form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container form button:hover {
+    background-color: #2980b9;
+}
+
+/* 로그인 폼 */
+.login-container .form-container {
+    max-width: 400px; /* 로그인 폼의 너비를 더 좁게 설정 */
+}
+
+/* 회원가입 폼 */
+.signup-container .form-container {
+    max-width: 500px; /* 회원가입 폼의 너비를 약간 넓게 설정 */
+}
+
+/************************************************************/
+/* 렌트카 예약 페이지 스타일 */
+.reservation-container {
+    width: 100%;
+    max-width: 1700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap; /* 화면 크기에 맞게 박스가 한 줄에 배치되지 않으면 자동으로 다음 줄로 내려감 */
+    gap: 20px; /* 좌우 여백을 띄워서 구분 */
+    justify-content: space-between;
+}
+
+
+/* 예약 조건 검색 박스 */
+.search-panel {
+    width: 25%;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-panel h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.search-panel form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2개의 열로 설정 */
+    gap: 20px;
+}
+
+.search-panel form label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.search-panel form input,
+.search-panel form select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.search-panel form input:focus,
+.search-panel form select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.search-panel form button {
+    grid-column: span 2; /* 버튼은 두 열을 차지하게 설정 */
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-panel form button:hover {
+    background-color: #2980b9;
+}
+
+/* 검색 결과 박스 */
+.results-panel {
+    width: 73%;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* 내용이 많아지면 스크롤이 생기도록 */
+}
+
+.results-panel h3 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.car-results {
+    margin-top: 20px;
+    color: #333;
+    font-size: 18px;
+    padding-left: 0; /* 기본 리스트 스타일 제거 */
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    display: flex;
+    flex-wrap: wrap; /* 한 줄에 여러 차량을 배치할 수 있도록 */
+    gap: 20px; /* 간격 조정 */
+}
+
+
+.car-item {
+    width: 35%; /* 두 개씩 배치되도록 너비 설정 */
+    margin-bottom: 20px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    box-sizing: border-box; /* padding을 포함한 크기 계산 */
+}
+
+.car-item img {
+    width: 100%; /* 이미지가 부모 요소의 너비에 맞게 설정 */
+    max-width: 450px;
+    height: auto; /* 비율에 맞게 높이 자동 조정 */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.car-item strong {
+    font-weight: bold;
+    font-size: 20px;
+    color: #2c3e50;
+    display: block;
+    margin-top: 10px;
+}
+
+.car-item span {
+    font-size: 16px;
+    color: #0e0e0e;
+    margin: 5px 0;
+}
+
+.car-item form {
+    margin-top: 10px;
+}
+
+.car-item btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* 부드러운 배경 색상 전환 */
+}
+
+.car-item btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 768px) {
+    .reservation-container {
+        flex-direction: column; /* 모바일에서는 세로로 배치 */
+    }
+
+    .search-panel, .results-panel {
+        width: 100%; /* 각 박스가 화면을 차지하도록 설정 */
+        margin-bottom: 20px;
+    }
+
+    .search-panel form {
+        grid-template-columns: 1fr; /* 모바일에서는 한 열로 배치 */
+    }
+}
+
+/***********************************************************************************************************/
+
+/* 차량 목록 컨테이너 */
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* 차량 항목 스타일 */
+.car-item {
+    width: 600px; /* 차량 항목의 너비 */
+    height: 600px; /* 차량 항목의 높이 */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* 이미지가 넘치지 않도록 */
+    display: flex;
+    flex-direction: column; /* 이미지와 정보가 세로로 쌓이도록 */
+    justify-content: center; /* 세로로 중앙 정렬 */
+    align-items: center; /* 가로로 중앙 정렬 */
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 마우스 오버 시 살짝 확대 */
+.car-item:hover {
+    transform: scale(1.05); /* 마우스 오버 시 살짝 확대 */
+}
+
+/*자동차 이미지 조절*/
+.car-image {
+    max-width: 100%;  
+    max-height: 100%;
+    object-fit: cover; /* 이미지를 영역에 맞게 크롭 */
+}
+
+/* 차량 정보 영역 */
+.car-info {
+    padding: 15px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.car-info h2 {
+    font-size: 22px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.car-info p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* 필터링 폼 스타일 (차종, 연료 타입 필터) */
+form {
+    text-align: center;
+    margin-top: 30px;
+}
+
+form label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+form select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px;
+    width: 200px;
+}
+
+form button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+

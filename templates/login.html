@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="static/style.css">  <!-- CSS 파일 연결 -->
+</head>
+<body>
+
+    <!-- 네비게이션 바 (홈페이지로 돌아갈 수 있는 버튼 추가) -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            <a href="/login" class="btn">로그인</a>
+            <a href="/signup" class="btn">회원가입</a>
+        </div>
+    </header>
+
+    <!-- 로그인 폼 -->
+    <h2>로그인</h2>
+    <div class="form-container">
+        <form action="/login" method="POST">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required>
+    
+            <button type="submit">로그인</button>
+        </form>
+
+    </div>
+    
+    <p>계정이 없으신가요? <a href="/signup">회원가입</a></p>
+</body>
+</html>

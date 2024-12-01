@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>차량 관리 - 자동차 종류</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> <!-- 스타일시트 연결 -->
+</head>
+<body>
+    <h1>자동차 종류</h1>
+
+    <!-- 차량 검색 폼 -->
+    <form method="GET" action="/admin/car_types"> <!-- Change to GET for search functionality -->
+        <input type="text" name="search" placeholder="차량 이름 검색">
+        <button type="submit">검색</button>
+    </form>
+
+    <!-- 차량 등록 폼 -->
+    <h2>차량 등록</h2>
+    <form method="POST">
+        <input type="text" name="car_name" placeholder="차량 이름" required>
+        <input type="text" name="model_year" placeholder="모델연식" required>
+        
+        <label for="car_type">차량 종류:</label>
+        <select name="car_type" id="car_type" required>
+            <option value="소형">소형</option>
+            <option value="중형">중형</option>
+            <option value="고급">고급</option>
+            <option value="SUV">SUV</option>
+            <option value="수입차">수입차</option>
+            <option value="전기차">전기차</option>
+            <option value="승합차">승합차</option>
+        </select>
+
+        <!-- 연료 종류 선택 -->
+        <label for="fuel_type">연료 종류:</label>
+        <select name="fuel_type" id="fuel_type" required>
+            <option value="휘발유">휘발유</option>
+            <option value="경유">경유</option>
+            <option value="LPG">LPG</option>
+            <option value="전기">전기</option>
+            <option value="하이브리드">하이브리드</option>
+        </select>
+
+        <input type="text" name="color" placeholder="색상">
+        <input type="text" name="car_image" placeholder="이미지 URL">
+        <button type="submit">차량 등록</button>
+    </form>
+
+    <!-- 차량 목록 -->
+    <h2>차종 목록</h2>
+    <table border="1">
+        <tr>
+            <th>차량 이름</th>
+            <th>차량 종류</th>
+            <th>모델연식</th>
+            <th>색상</th>
+            <th>연료 종류</th>
+            <th>이미지</th>
+            <th>삭제</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.car_name }}</td>
+            <td>{{ car.car_type }}</td>
+            <td>{{ car.model_year }}</td>
+            <td>{{ car.color }}</td>
+            <td>{{ car.fuel_type }}</td>
+            <td><img src="{{ car.image_url }}" alt="차량 이미지" width="100"></td>
+
+            <td>
+                <form method="POST">
+                    <!-- delete_car 버튼을 누르면 차량 ID가 전송됨 -->
+                    <button type="submit" name="delete_car" value="{{ car.car_id }}">삭제</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/admin/car" class="btn">차량 관리</a>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+</body>
+</html>

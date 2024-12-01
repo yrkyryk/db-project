@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객센터</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- CSS 파일 연결 -->
+</head>
+<body>
+
+    <!-- 네비게이션 바 -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            {% if user_logged_in %}
+                <span>{{ name }}님, 반갑습니다!</span>
+                <a href="/logout" class="btn">로그아웃</a>
+            {% else %}
+                <a href="/login" class="btn">로그인</a>
+                <a href="/signup" class="btn">회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- 메뉴버튼-->
+    <nav class="menu">
+        <a href="/reservation" class="btn">렌트카 예약</a>
+        <a href="/car" class="btn">보유차종</a>
+        <a href="/guide" class="btn">이용안내</a>
+        <a href="/support" class="btn">고객센터</a>
+    </nav>
+
+    <h1>고객센터</h1>
+
+    <!-- 고객센터 서브 메뉴 -->
+    <div class="support-menu">
+        <ul>
+            <li><a href="/review">이용 후기</a></li>
+            <li><a href="/qna">문의사항</a></li>
+            <li><a href="/instant_inquiry">즉시문의</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

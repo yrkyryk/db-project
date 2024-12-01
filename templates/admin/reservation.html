@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 관리</title>
+    
+</head>
+<body>
+    <h2>예약 관리</h2>
+
+    <!-- 검색 폼 -->
+    <form method="POST">
+        <a>***날짜 검색은 픽업날짜***</a><br>
+        <input type="text" name="search" placeholder="예약자 이름 또는 전화번호로 검색">
+        <input type="date" name="pickup_date" placeholder="픽업 날짜로 검색">
+        <button type="submit">검색</button>
+    </form>
+
+    <h3>검색된 예약 목록</h3>
+    <div class ="reservation">
+        <form method="POST">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>예약 ID</th>
+                        <th>사용자 이름</th>
+                        <th>차량 ID</th>
+                        <th>픽업 날짜</th>
+                        <th>반납 날짜</th>
+                        <th>픽업 시간</th>
+                        <th>반납 시간</th>
+                        <th>확인 직원 이름</th>
+                        <th>상세 보기</th>
+                        <th>사용자 연락처</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation[0] }}</td>
+                            <td>{{ reservation[2] }}</td>  <!-- 사용자 이름 -->
+                            <td>{{ reservation[3] }}</td>  <!-- 차량 ID -->
+                            <td>{{ reservation[4] }}</td>  <!-- 픽업 날짜 -->
+                            <td>{{ reservation[5] }}</td>  <!-- 반납 날짜 -->
+                            <td>{{ reservation[6] }}</td>  <!-- 픽업 시간 -->
+                            <td>{{ reservation[7] }}</td>  <!-- 반납 시간 -->
+                            <td>
+                                <input type="text" name="employee_name_{{ reservation[0] }}" value="{{ reservation[8] }}" required>
+                            </td>
+                            <td><a href="/admin/reservations/{{ reservation[0] }}">상세 보기</a></td>
+                            <td>{{ reservation[9] }}</td>  <!-- 사용자 전화번호 -->
+                            <td>
+                                <form method="POST" action="{{ url_for('admin_reservations') }}">
+                                    <input type="hidden" name="delete_reservation_id" value="{{ reservation[0] }}">
+                                    <button type="submit">삭제</button>
+                                </form>
+                            </td>                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <button type="submit">수정 저장</button>
+        </form>
+    </div>
+    
+
+    
+
+    <br><br>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+</body>
+</html>

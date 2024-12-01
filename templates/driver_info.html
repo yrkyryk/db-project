@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운전자 정보 입력</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- CSS 파일 연결 -->
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+    </header>
+
+    <h1>운전자 정보 입력</h1>
+    
+    <main>
+        <form method="POST" action="/driver_info">
+            <label for="driver_name">이름:</label>
+            <input type="text" id="driver_name" name="driver_name" required>
+
+            <label for="driver_phone">전화번호:</label>
+            <input type="text" id="driver_phone" name="driver_phone" required>
+
+            <button type="submit">결제하기</button>
+        </form>
+    </main>
+
+</body>
+</html>

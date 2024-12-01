@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>db 렌터카 - 보유 차종</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- CSS 파일 연결 -->
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            {% if user_logged_in %}
+                <span>{{ name }}님, 반갑습니다!</span>
+                <a href="/logout" class="btn">로그아웃</a>
+            {% else %}
+                <a href="/login" class="btn">로그인</a>
+                <a href="/signup" class="btn">회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <nav class="menu">
+        <a href="/reservation" class="btn">렌트카 예약</a>
+        <a href="/car" class="btn">보유차종</a>
+        <a href="/guide" class="btn">이용안내</a>
+        <a href="/support" class="btn">고객센터</a>
+    </nav>
+
+    <h1>보유 차종</h1>
+
+    <!-- 차종과 연료 타입 필터 -->
+    <form method="GET" action="/car">
+        <label for="car_type">차종:</label>
+        <select name="car_type" id="car_type">
+            <option value="">전체</option>
+            <option value="소형" {% if car_type == '소형' %}selected{% endif %}>소형</option>
+            <option value="중형" {% if car_type == '중형' %}selected{% endif %}>중형</option>
+            <option value="고급" {% if car_type == '고급' %}selected{% endif %}>고급</option>
+            <option value="SUV" {% if car_type == 'SUV' %}selected{% endif %}>SUV</option>
+            <option value="수입차" {% if car_type == '수입차' %}selected{% endif %}>수입차</option>
+            <option value="전기차" {% if car_type == '전기차' %}selected{% endif %}>전기차</option>
+            <option value="승합차" {% if car_type == '승합차' %}selected{% endif %}>승합차</option>
+        </select>
+
+        <label for="fuel_type">연료 타입:</label>
+        <select name="fuel_type" id="fuel_type">
+            <option value="">전체</option>
+            <option value="휘발유" {% if fuel_type == '휘발유' %}selected{% endif %}>휘발유</option>
+            <option value="경유" {% if fuel_type == '경유' %}selected{% endif %}>경유</option>
+            <option value="LPG" {% if fuel_type == 'LPG' %}selected{% endif %}>LPG</option>
+            <option value="전기" {% if fuel_type == '전기' %}selected{% endif %}>전기</option>
+            <option value="하이브리드" {% if fuel_type == '하이브리드' %}selected{% endif %}>하이브리드</option>
+        </select>
+
+        <button type="submit">필터</button>
+    </form>
+
+    <!-- 차량 목록 출력 -->
+    <div class="car-list">
+        {% for car in cars %}
+            <div class="car-item">
+                <div class="car-image-container">
+                    <img src="{{ car.image_url }}" alt="{{ car.car_name }}" class="car-image">
+                    <div class="car-info">
+                        <h2>{{ car.car_name }}</h2>
+                        <p>연식: {{ car.model_year }}</p>
+                        <p>차량 종류: {{ car.car_type }}</p>
+                        <p>연료: {{ car.fuel_type }}</p>
+                        <p>색상: {{ car.color }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

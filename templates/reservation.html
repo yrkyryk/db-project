@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>db 렌터카</title>
+    <link rel="stylesheet" href="static/style.css"> <!-- CSS 파일 연결 -->
+</head>
+
+<body>
+
+    <!-- 네비게이션 바 -->
+    <header>
+        <div class="logo">
+            <a href="/" class="btn">db 렌트카</a>
+        </div>
+        <div class="user-actions">
+            {% if user_logged_in %}
+                <span>{{ name }}님, 반갑습니다!</span>
+                <a href="/logout" class="btn">로그아웃</a>
+            {% else %}
+                <a href="/login" class="btn">로그인</a>
+                <a href="/signup" class="btn">회원가입</a>
+            {% endif %}
+        </div>
+    </header>
+    
+    <!-- 메뉴 버튼 -->
+    <nav class="menu">
+        <a href="/reservation" class="btn">렌트카 예약</a>
+        <a href="/car" class="btn">보유차종</a>
+        <a href="/guide" class="btn">이용안내</a>
+        <a href="/support" class="btn">고객센터</a>
+    </nav>
+    <h1>예약방법</h1>
+    <h2>예약조건입력 ▶ 운전자 정보 입력 ▶ 결제 ▶ 예약완료</h2>
+    
+    <main class="reservation-container">
+        <!-- 예약 조건 검색 -->
+        <div class="search-panel">
+            <h2>예약 조건 검색</h2>
+            <form id="searchForm" method="POST" action="/reservation">
+                <label for="car_type">차종:</label>
+                <select name="car_type" id="car_type">
+                    <option value="">전체</option>
+                    <option value="소형" {% if car_type == '소형' %}selected{% endif %}>소형</option>
+                    <option value="중형" {% if car_type == '중형' %}selected{% endif %}>중형</option>
+                    <option value="고급" {% if car_type == '고급' %}selected{% endif %}>고급</option>
+                    <option value="SUV" {% if car_type == 'SUV' %}selected{% endif %}>SUV</option>
+                    <option value="수입차" {% if car_type == '수입차' %}selected{% endif %}>수입차</option>
+                    <option value="전기차" {% if car_type == '전기차' %}selected{% endif %}>전기차</option>
+                    <option value="승합차" {% if car_type == '승합차' %}selected{% endif %}>승합차</option>
+                </select>
+            
+                <label for="fuel_type">연료 종류:</label>
+                <select name="fuel_type" id="fuel_type">
+                    <option value="">전체</option>
+                    <option value="휘발유" {% if fuel_type == '휘발유' %}selected{% endif %}>휘발유</option>
+                    <option value="디젤" {% if fuel_type == '디젤' %}selected{% endif %}>디젤</option>
+                    <option value="전기" {% if fuel_type == '전기' %}selected{% endif %}>전기</option>
+                    <option value="하이브리드" {% if fuel_type == '하이브리드' %}selected{% endif %}>하이브리드</option>
+                </select>
+            
+                <label for="start_date">대여 시작일:</label>
+                <input type="date" id="start_date" name="start_date" value="{{ default_start_date }}" min="{{ today }}" required>
+            
+                <label for="end_date">대여 종료일:</label>
+                <input type="date" id="end_date" name="end_date" value="{{ default_end_date }}" min="{{ start_date }}" required>
+            
+                <label for="pickup_time">픽업 시간(7시~22시):</label>
+                <select name="pickup_time" id="pickup_time">
+                    <option value="07:00" >07:00</option>
+                    <option value="07:30" >07:30</option>
+                    <option value="08:00" >08:00</option>
+                    <option value="08:30" >08:30</option>
+                    <option value="09:00" selected="selected">09:00</option>
+                    <option value="09:30" >09:30</option>
+                    <option value="10:00" >10:00</option>
+                    <option value="10:30" >10:30</option>
+                    <option value="11:00" >11:00</option>
+                    <option value="11:30" >11:30</option>
+                    <option value="12:00" >12:00</option>
+                    <option value="12:30" >12:30</option>
+                    <option value="13:00" >13:00</option>
+                    <option value="13:30" >13:30</option>
+                    <option value="14:00" >14:00</option>
+                    <option value="14:30" >14:30</option>
+                    <option value="15:00" >15:00</option>
+                    <option value="15:30" >15:30</option>
+                    <option value="16:00" >16:00</option>
+                    <option value="16:30" >16:30</option>
+                    <option value="17:00" >17:00</option>
+                    <option value="17:30" >17:30</option>
+                    <option value="18:00" >18:00</option>
+                    <option value="18:30" >18:30</option>
+                    <option value="19:00" >19:00</option>
+                    <option value="19:30" >19:30</option>
+                    <option value="20:00" >20:00</option>
+                    <option value="20:30" >20:30</option>
+                    <option value="21:00" >21:00</option>
+                    <option value="21:30" >21:30</option>
+                    <option value="22:00" >22:00</option>
+                </select>
+            
+                <label for="return_time">반납 시간(8시~19시):</label>
+                <select name="return_time" id="return_time">
+                    <option value="08:00" >08:00</option>
+                    <option value="08:30" >08:30</option>
+                    <option value="09:00" selected="selected">09:00</option>
+                    <option value="09:30" >09:30</option>
+                    <option value="10:00" >10:00</option>
+                    <option value="10:30" >10:30</option>
+                    <option value="11:00" >11:00</option>
+                    <option value="11:30" >11:30</option>
+                    <option value="12:00" >12:00</option>
+                    <option value="12:30" >12:30</option>
+                    <option value="13:00" >13:00</option>
+                    <option value="13:30" >13:30</option>
+                    <option value="14:00" >14:00</option>
+                    <option value="14:30" >14:30</option>
+                    <option value="15:00" >15:00</option>
+                    <option value="15:30" >15:30</option>
+                    <option value="16:00" >16:00</option>
+                    <option value="16:30" >16:30</option>
+                    <option value="17:00" >17:00</option>
+                    <option value="17:30" >17:30</option>
+                    <option value="18:00" >18:00</option>
+                    <option value="18:30" >18:30</option>
+                    <option value="19:00" >19:00</option>
+                </select>
+            
+                <button type="submit">검색</button>
+            </form>
+        </div>
+
+    <div class="results-panel">
+        <h3>검색 결과</h3>
+        <ul id="car-results">
+            {% if cars %}
+                {% for car in cars %}
+                    <div class="car-item">
+                        <strong>{{ car.car_name }}</strong>
+                        <span>{{ car.model_year }}</span><br>
+                        <img src="{{ car.image_url }}" alt="차량 이미지" class="car-image" /><br>
+                        <span>색상: {{ car.color }}</span>  
+                        <span>연료타입: {{car.fuel_type}}</span>
+                        <form action="/driver_info" method="POST">
+                            <input type="hidden" name="car_id" value="{{ car.car_id }}">
+                            <button type="submit" class="btn">예약하기</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>조건에 맞는 차량이 없습니다.</p>
+            {% endif %}
+        </ul>
+    </div>
+
+    </main>
+</body>
+</html>

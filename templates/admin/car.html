@@ -1,0 +1,27 @@
+<!-- 차량 관리 페이지 (car.html) -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차량 관리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> <!-- 스타일시트 연결 -->
+</head>
+<body>
+
+    <h2>차량 관리</h2>
+
+    <div class="menu">
+        <h3>차량 관리 메뉴</h3>
+        <ul>
+            <li><a href="/admin/add_car" class="btn">자동차 등록</a></li>
+            <li><a href="/admin/car_maintenance" class="btn">유지보수</a></li>
+            <li><a href="/admin/car_types" class="btn">자동차 종류</a></li>
+        </ul>
+    </div>
+
+    <br><br>
+    <a href="/admin_dashboard" class="btn">관리자 대시보드</a>
+
+</body>
+</html>
